@@ -34,21 +34,21 @@ def create_user(request):
 
 
 def update_user(request, id):
-    medicine = get_object_or_404(user, id=id)
+    user = get_object_or_404(User, id=id)
     if request.method == 'POST':
         try:
-            user.name = request.POST['name']
+            user.username = request.POST['username']
             user.email = request.POST['email']
             user.role = request.POST['role']
-            medicine.save()
+            user.save()
             
-            messages.success(request, 'Medicine updated successfully!')
+            messages.success(request, 'User updated successfully!')
             return redirect('user')
     
         except Exception as e:
-            messages.error(request, 'Failed to create medicine.')
+            messages.error(request, 'Failed to create User.')
             return redirect('update_user')
-    return render(request, 'updateMedicine.html', {'user': user})
+    return render(request, 'updateUser.html', {'user': user})
 
 def delete_user(request, id):
     medicine = get_object_or_404(user, id=id)
