@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Medicine List</h1>
+
+{% if messages %}
+<div>
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+<a href="{% url 'create_medicine' %}" class="btn btn-primary">Create New Medicine</a>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Medicine Name</th>
+            <th>Medicine Type</th>
+            <th>Medicine Price</th>
+            <th>Medicine Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for medicines in medicine %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ medicines.medicine_name }}</td>
+            <td>{{ medicines.get_medicin_type_display }}</td>
+            <td>{{ medicines.medicine_price }}</td>
+            <td>{{ medicines.medicine_stock }}</td>
+            <td>
+                <a href="{% url 'update_medicine' medicines.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'delete_medicine' medicines.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

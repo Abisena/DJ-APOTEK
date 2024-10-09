@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Create Medicine</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="medicine_name" class="form-label">Medicine Name</label>
+        <input type="text" class="form-control" id="medicine_name" name="medicine_name" required>
+    </div>
+    <div class="mb-3">
+        <label for="medicin_type" class="form-label">Medicine Type</label>
+        <select class="form-select" id="medicin_type" name="medicin_type" required>
+            <option value="kapsul">Kapsul</option>
+            <option value="sirup">Sirup</option>
+            <option value="tablet">Tablet</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="medicine_price" class="form-label">Medicine Price</label>
+        <input type="number" class="form-control" id="medicine_price" name="medicine_price" required>
+    </div>
+    <div class="mb-3">
+        <label for="medicine_stock" class="form-label">Medicine Stock</label>
+        <input type="number" class="form-control" id="medicine_stock" name="medicine_stock" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

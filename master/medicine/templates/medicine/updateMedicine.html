@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Update Medicine</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="medicine_name" class="form-label">Medicine Name</label>
+        <input type="text" class="form-control" id="medicine_name" name="medicine_name" value="{{ medicine.medicine_name }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="medicin_type" class="form-label">Medicine Type</label>
+        <select class="form-select" id="medicin_type" name="medicin_type" required>
+            <option value="kapsul" {% if medicine.medicin_type == 'kapsul' %}selected{% endif %}>Kapsul</option>
+            <option value="sirup" {% if medicine.medicin_type == 'sirup' %}selected{% endif %}>Sirup</option>
+            <option value="tablet" {% if medicine.medicin_type == 'tablet' %}selected{% endif %}>Tablet</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="medicine_price" class="form-label">Medicine Price</label>
+        <input type="number" class="form-control" id="medicine_price" name="medicine_price" value="{{ medicine.medicine_price }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="medicine_stock" class="form-label">Medicine Stock</label>
+        <input type="number" class="form-control" id="medicine_stock" name="medicine_stock" value="{{ medicine.medicine_stock }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+{% endblock %}
